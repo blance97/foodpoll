@@ -46,7 +46,7 @@ class App extends Component {
     console.log("id", id);
     console.log("data:", data)
     base.post(id, data).then(() => {
-      this.setState({ link: `http://localhost:3000/vote/${id}` }, () => {
+      this.setState({ link: `http://${window.location.hostname}:${window.location.port}/vote/${id}` }, () => {
         this.next();
       })
     })
