@@ -51,7 +51,7 @@ class SharePoll extends Component {
         });
         return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Segment style={{ width: '60%' }}>
+                <Segment style={{ width: '100%' }}>
                     <Header as='h1'>Share Poll</Header>
                     <center style={{ margin: 20 }}>Share Link <Input value={this.props.link} size="large" /></center>
                     <Button.Group style={{ width: '100%' }}>

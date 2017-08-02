@@ -61,7 +61,7 @@ class Results extends Component {
 
         return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Segment style={{ width: '50%' }}>
+                <Segment style={{ width: '100%' }}>
                     <Header as='h1'>Results</Header>
                     {votes}
                     <br />

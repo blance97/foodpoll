@@ -119,7 +119,7 @@ class Voting extends Component {
         });
         return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Segment style={{ width: '60%' }}>
+                <Segment style={{ width: '100%' }}>
                     <Header as='h1'>Food Preference</Header>
                     <Form.Field>
                         {this.state.nameError && <Label basic color='red' pointing='below'>Enter Name</Label>}
