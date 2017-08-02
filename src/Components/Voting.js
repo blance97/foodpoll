@@ -83,7 +83,7 @@ class Voting extends Component {
         console.log(peoplePreferences);
         base.update(id, { data: { inputs, peoplePreferences } }).then(() => {
             console.log("good")
-            localStorage.setItem('VotedFor', this.props.match.params.id);
+            localStorage.setItem(`VotedFor(${this.props.match.params.id})`, this.props.match.params.id);
             window.location.href = `http://${window.location.hostname}:${window.location.port}/results/${this.props.match.params.id}`;
         }).catch((err) => {
             console.log(err);
@@ -134,7 +134,7 @@ class Voting extends Component {
                     <Button onClick={this.addOption} icon='add square' size='large' content='Add Preference' primary labelPosition='right' />
                     <Divider />
                     <Button.Group style={{ width: '100%' }}>
-                        <Button disabled={this.state.value === ''} color='teal' onClick={() => this.submit()}>Continue</Button>
+                        <Button disabled={this.state.value === '' || localStorage.getItem(`VotedFor(${this.props.match.params.id})`) === this.props.match.params.id} color='teal' onClick={() => this.submit()}>Continue</Button>
                     </Button.Group>
                 </Segment>
             </div >
