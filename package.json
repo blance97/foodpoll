@@ -1,0 +1,24 @@
+{
+  "name": "foodpoll",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "firebase": "^4.2.0",
+    "lodash": "^4.17.4",
+    "re-base": "^3.0.3",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-router-dom": "^4.1.2",
+    "react-scripts": "1.0.10",
+    "react-slick": "^0.14.11",
+    "semantic-ui-react": "^0.71.3",
+    "shortid": "^2.2.8",
+    "underscore": "^1.8.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
