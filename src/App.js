@@ -75,7 +75,7 @@ class App extends Component {
     return (
       <Router>
         <main>
-          <Stepper />
+          {/* <Stepper /> */}
           <Switch>
             <Route path="/" exact component={slider} />
             <Route path="/vote/:id" component={Voting} />

@@ -66,7 +66,7 @@ class CreatePoll extends Component {
         });
         return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Segment style={{ width: '60%' }}>
+                <Segment style={{ width: '100%' }}>
                     <Header as='h1'>Food Poll</Header>
                     <text>Editable </text>
                     <Checkbox toggle value={this.state.editable} label={!this.state.editable ? " OFF" : "  ON"} onChange={() => { this.setState({ editable: !this.state.editable }) }} />
