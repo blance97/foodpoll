@@ -8,14 +8,14 @@ class CreatePoll extends Component {
         super(props);
         this.state = {
             editable: false,
-            inputs: [{ data: "", votes: 0, index: 0 }]
+            inputs: [{ data: "", index: 0 }]
         }
         this.addOption = this.addOption.bind(this);
     }
 
     addOption() {
         this.setState({
-            inputs: [...this.state.inputs, { data: "", votes: 0, index: this.state.inputs[this.state.inputs.length - 1].index + 1 }]
+            inputs: [...this.state.inputs, { data: "", index: this.state.inputs[this.state.inputs.length - 1].index + 1 }]
         })
     }
     updateOption(e, data, index) {

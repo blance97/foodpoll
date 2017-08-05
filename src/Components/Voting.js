@@ -22,9 +22,9 @@ class Voting extends Component {
         const id = this.props.match.params.id;
         base.fetch(id, {
             conext: this
-        }).then((data) => {
-            console.log(data);
-            this.setState({ choices: data.inputs, peoplePreferences: data.peoplePreferences ? data.peoplePreferences : {} })
+        }).then((res) => {
+            console.log(res);
+            this.setState({ choices: res.inputs, peoplePreferences: res.peoplePreferences ? res.peoplePreferences : {} })
         }).catch((err) => {
             console.log(err);
         })
@@ -69,19 +69,11 @@ class Voting extends Component {
             return;
         }
         const id = this.props.match.params.id;
-        const inputs = this.state.choices.map((element) => {
-            if (element.data === this.state.value) {
-                return { ...element, votes: element.votes + 1 }
-            } else {
-                return element;
-            }
-        })
-        let pref = { preferences: this.state.preferences, votedFor: this.state.value }
-        console.log(pref);
-        const peoplePreferences = { ...this.state.peoplePreferences, [this.state.name]: pref }
-        console.log(inputs)
+        // let pref = { preferences: this.state.preferences, votedFor: this.state.value }
+        // console.log(pref);
+        const peoplePreferences = { name: this.state.name, preferences: this.state.preferences, votedFor: this.state.value }
         console.log(peoplePreferences);
-        base.update(id, { data: { inputs, peoplePreferences } }).then(() => {
+        base.push(`${id}/peoplePreferences`, { data: peoplePreferences }).then(() => {
             console.log("good")
             localStorage.setItem(`VotedFor(${this.props.match.params.id})`, this.props.match.params.id);
             window.location.href = `http://${window.location.hostname}:${window.location.port}/results/${this.props.match.params.id}`;

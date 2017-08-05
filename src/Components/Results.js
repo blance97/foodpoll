@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Progress, Segment, Header, Divider, Table } from 'semantic-ui-react';
+import { Progress, Segment, Header, Divider, Table, Button } from 'semantic-ui-react';
 import base from '../rebase';
 import { map } from 'underscore'
 
@@ -27,16 +27,25 @@ class Results extends Component {
         let builder = "";
         prefArray.forEach((element, i) => {
             builder += element.data
-            i !== prefArray.length-1 ? builder += ", " : null;
+            i !== prefArray.length - 1 ? builder += ", " : null;
         })
         return builder;
+    }
+    getVotes(data) {
+        let number = 0;
+        Object.keys(this.state.preferences).forEach((key, i) => {
+            if (this.state.preferences[key].votedFor === data) {
+                number++;
+            }
+        });
+        return number;
     }
     render() {
         const votes = this.state.foodVotes.map((element, i) => {
             return (
                 <div key={i}>
                     <Divider />
-                    <Progress percent={(element.votes / this.state.total) * 100} progress='percent' indicating >
+                    <Progress percent={(this.getVotes(element.data) / this.state.total) * 100} progress='percent' indicating >
                         {element.data}
                     </Progress>
                 </div>
@@ -47,7 +56,7 @@ class Results extends Component {
             return (
                 <Table.Row key={i}>
                     <Table.Cell>
-                        {key}
+                        {this.state.preferences[key].name}
                     </Table.Cell>
                     <Table.Cell>
                         {this.formatPreferences(this.state.preferences[key].preferences)}
@@ -78,6 +87,7 @@ class Results extends Component {
                             {preferences}
                         </Table.Body>
                     </Table>
+                    <Button onClick={() => window.location.href = `http://${window.location.hostname}:${window.location.port}`}>Create a new poll</Button>
                 </Segment>
             </div >
         );
