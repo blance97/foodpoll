@@ -14,7 +14,7 @@ class Voting extends Component {
             choices: []
         }
         if (localStorage.getItem(`VotedFor(${this.props.match.params.id})`) === this.props.match.params.id) {
-            window.location.href = `http://${window.location.hostname}:${window.location.port}/results/${this.props.match.params.id}`;
+            window.location.href = `https://${window.location.hostname}:${window.location.port}/results/${this.props.match.params.id}`;
         }
         this.addOption = this.addOption.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -79,7 +79,7 @@ class Voting extends Component {
         base.push(`${id}/peoplePreferences`, { data: peoplePreferences }).then(() => {
             console.log("good")
             localStorage.setItem(`VotedFor(${this.props.match.params.id})`, this.props.match.params.id);
-            window.location.href = `http://${window.location.hostname}:${window.location.port}/results/${this.props.match.params.id}`;
+            window.location.href = `https://${window.location.hostname}:${window.location.port}/results/${this.props.match.params.id}`;
         }).catch((err) => {
             console.log(err);
         })

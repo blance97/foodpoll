@@ -89,7 +89,7 @@ class Results extends Component {
                                 {preferences}
                             </Table.Body>
                         </Table>
-                        <Button onClick={() => window.location.href = `http://${window.location.hostname}:${window.location.port}`}>Create a new poll</Button>
+                        <Button onClick={() => window.location.href = `https://${window.location.hostname}:${window.location.port}`}>Create a new poll</Button>
                     </Segment>
                     <Segment inverted>
                         <Divider horizontal inverted>Suggested Places</Divider>
