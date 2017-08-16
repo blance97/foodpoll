@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Divider, Dimmer, Loader, Segment } from 'semantic-ui-react';
 import axios from 'axios';
+const google = window.google;
 
 export default class DetailedPlace extends Component {
     constructor(props) {
@@ -12,11 +13,16 @@ export default class DetailedPlace extends Component {
         }
     }
     componentDidMount() {
-        axios.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${this.props.detailedID}&key=AIzaSyCpOKNd2Ik3OgRAryOqTXvK8dpi9m76PdE`)
-            .then((res) => this.setState({ loading: false, info: res.data }))
+        let service = new google.maps.places.PlacesService(document.getElementById('map'));
+        let request = {
+            placeId: this.props.detailedID
+        };
+        service.getDetails(request, (res) => {
+            this.setState({ loading: false, info: res })
+        });
     }
     render() {
-        const details = this.state.info.result;
+        const details = this.state.info;
         return (
             <div>
                 {this.state.loading ? <Segment>
@@ -45,8 +51,8 @@ export default class DetailedPlace extends Component {
                         <center><Header as="h3">Schedule</Header></center>
                         <div>
                             <ul>
-                                {details.opening_hours.weekday_text.map((element) => {
-                                    return (<li>
+                                {details.opening_hours.weekday_text.map((element, i) => {
+                                    return (<li key={i}>
                                         {element}
                                     </li>)
                                 })}

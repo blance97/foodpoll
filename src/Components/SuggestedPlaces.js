@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { List, Image, Card, Divider, Dimmer, Loader, Segment, Modal, Button, Icon, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import DetailedPlace from './DetailedPlace';
+const google = window.google;
 
 export default class SuggestedPlaces extends Component {
     constructor(props) {
@@ -18,11 +19,18 @@ export default class SuggestedPlaces extends Component {
     componentDidMount() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                console.log(position);
+                let currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                let service = new google.maps.places.PlacesService(document.getElementById('map'));
                 this.props.keywords.forEach((element) => {
-                    console.log("eleement: ", element.data);
-                    axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?opennow&location=${position.coords.latitude},${position.coords.longitude}&radius=24141&type=restaurant&keyword=${element.data}&key=AIzaSyCpOKNd2Ik3OgRAryOqTXvK8dpi9m76PdE`)
-                        .then((res) => this.setState({ loading: false, initPos: { lat: position.coords.latitude, long: position.coords.longitude }, SuggestedPlaces: { ...this.state.SuggestedPlaces, [element.data]: res.data.results.slice(0, 10) } }));
+                    let request = {
+                        location: currentLocation,
+                        radius: '24141',
+                        type: ['restaurant'],
+                        keyword: `${element.data}`
+                    };
+                    service.nearbySearch(request, (res) => {
+                        this.setState({ loading: false, initPos: { lat: position.coords.latitude, long: position.coords.longitude }, SuggestedPlaces: { ...this.state.SuggestedPlaces, [element.data]: res.slice(0, 10) } })
+                    });
                 })
             });
         (error) => alert(error.message),
