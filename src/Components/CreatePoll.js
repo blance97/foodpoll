@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Progress, Segment, Button, Checkbox, Header, Divider, Icon, Dropdown } from 'semantic-ui-react';
+import { Progress, Container, Button, Checkbox, Header, Divider, Icon, Dropdown, Step } from 'semantic-ui-react';
 import shortid from 'shortid';
 import Cuisines from '../Data/Cuisines';
 
@@ -48,7 +48,7 @@ class CreatePoll extends Component {
      * TODO: Look into user addition
      */
     render() {
-        const cuisinesOptions = Object.keys(Cuisines).map((cuisine, i) => {
+        const cuisinesOptions = Cuisines.Cuisines.map((cuisine, i) => {
             return { key: i, value: cuisine, text: cuisine }
         });
 
@@ -65,11 +65,9 @@ class CreatePoll extends Component {
             );
         });
         return (
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Segment style={{ width: '100%' }}>
-                    <Header as='h1'>Food Poll</Header>
-                    <text>Editable </text>
-                    <Checkbox toggle value={this.state.editable} label={!this.state.editable ? " OFF" : "  ON"} onChange={() => { this.setState({ editable: !this.state.editable }) }} />
+            <Container style={{ backgroundColor: "#eeeeee", padding: 15, borderRadius: 5 }}>
+                <Header as='h1' style={{ textColor: "white" }}>Create Poll</Header>
+                <div>
                     <Divider />
                     {list}
                     <Button onClick={this.addOption} icon='add square' size='large' content='Add Choice' primary labelPosition='right' />
@@ -77,8 +75,9 @@ class CreatePoll extends Component {
                     <Button.Group style={{ width: '100%' }}>
                         <Button color='teal' onClick={() => this.submit(this.state)}>Continue</Button>
                     </Button.Group>
-                </Segment>
-            </div >
+                </div>
+            </Container>
+
         )
     }
 }

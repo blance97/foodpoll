@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Progress, Segment, Button, Checkbox, Header, Divider, Icon } from 'semantic-ui-react';
+import { Progress, Container, Button, Checkbox, Header, Divider, Icon } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
   Route,
@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom';
 import Slider from 'react-slick';
 import Stepper from './Components/Stepper';
+import HomePage from './Components/index';
+import About from './Components/About';
 import CreatePoll from './Components/CreatePoll';
 import SharePoll from './Components/SharePoll';
 import Voting from './Components/Voting';
@@ -73,17 +75,21 @@ class App extends Component {
     );
 
     return (
-      <Router>
-        <main>
-          {/* <Stepper /> */}
-          <Switch>
-            <Route path="/" exact component={slider} />
-            <Route path="/vote/:id" component={Voting} />
-            <Route path="/results/:id" component={Results} />
-            {/* <Route component={NotFound} /> */}
-          </Switch>
-        </main>
-      </Router>
+      <div style={{ backgroundColor: "#424242", minHeight: "100vh" }}>
+        <Router>
+          <div>
+            <Stepper />
+            <Switch>
+              <Route path="/" exact component={HomePage} />
+              <Route path="/about" component={About} />
+              <Route path="/createPoll" component={slider} />
+              <Route path="/vote/:id" component={Voting} />
+              <Route path="/results/:id" component={Results} />
+              {/* <Route component={NotFound} /> */}
+            </Switch>
+          </div>
+        </Router>
+      </div >
     )
   }
 }

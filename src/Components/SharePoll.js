@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Button, Header, Divider, Icon, Input } from 'semantic-ui-react';
+import { Segment, Button, Header, Divider, Icon, Input, Container } from 'semantic-ui-react';
 import Cuisines from '../Data/Cuisines'
 
 class SharePoll extends Component {
@@ -51,15 +51,17 @@ class SharePoll extends Component {
         });
         return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Segment style={{ width: '100%' }}>
-                    <Header as='h1'>Share Poll</Header>
-                    <center style={{ margin: 20 }}>Share Link <Input value={this.props.link} size="large" /></center>
-                    <Button.Group style={{ width: '100%' }}>
-                        <Button onClick={() => this.props.prev()}>Back</Button>
-                        <Button.Or />
-                        <Button color='teal' onClick={() => { window.location.href = this.props.link }}>Continue</Button>
-                    </Button.Group>
-                </Segment>
+                <Container style={{ backgroundColor: "#eeeeee", padding: 15, borderRadius: 5 }}>
+                    <Segment style={{ width: '100%' }}>
+                        <Header as='h1'>Share Poll</Header>
+                        <center style={{ margin: 20 }}>Share Link <Input value={this.props.link} size="large" /></center>
+                        <Button.Group style={{ width: '100%' }}>
+                            <Button onClick={() => this.props.prev()}>Back</Button>
+                            <Button.Or />
+                            <Button color='teal' onClick={() => { window.location.href = this.props.link }}>Continue</Button>
+                        </Button.Group>
+                    </Segment>
+                </Container>
             </div >
         )
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Segment, Button, Radio, Header, Divider, Icon, Input, Label } from 'semantic-ui-react';
+import { Form, Segment, Button, Radio, Header, Divider, Icon, Input, Label, Container } from 'semantic-ui-react';
 import base from '../rebase';
 
 class Voting extends Component {
@@ -12,6 +12,9 @@ class Voting extends Component {
             preferences: [{ data: "", index: 0 }],
             peoplePreferences: {},
             choices: []
+        }
+        if (localStorage.getItem(`VotedFor(${this.props.match.params.id})`) === this.props.match.params.id) {
+            window.location.href = `http://${window.location.hostname}:${window.location.port}/results/${this.props.match.params.id}`;
         }
         this.addOption = this.addOption.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -111,24 +114,26 @@ class Voting extends Component {
         });
         return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Segment style={{ width: '100%' }}>
-                    <Header as='h1'>Food Preference</Header>
-                    <Form.Field>
-                        {this.state.nameError && <Label basic color='red' pointing='below'>Enter Name</Label>}
-                        <Input style={{ width: '100%' }} onChange={this.handleInputChange} placeholder="Your Name" label="Your Name" />
-                    </Form.Field>
-                    <Divider horizontal>Vote on food type</Divider>
-                    <Form>
-                        {choices}
-                    </Form>
-                    <Divider horizontal>Select Preferences</Divider>
-                    {list}
-                    <Button onClick={this.addOption} icon='add square' size='large' content='Add Preference' primary labelPosition='right' />
-                    <Divider />
-                    <Button.Group style={{ width: '100%' }}>
-                        <Button disabled={this.state.value === '' || localStorage.getItem(`VotedFor(${this.props.match.params.id})`) === this.props.match.params.id} color='teal' onClick={() => this.submit()}>Continue</Button>
-                    </Button.Group>
-                </Segment>
+                <Container text style={{ backgroundColor: "#eeeeee", padding: 15, borderRadius: 5 }}>
+                    <Segment style={{ width: '100%' }}>
+                        <Header as='h1'>Food Preference</Header>
+                        <Form.Field>
+                            {this.state.nameError && <Label basic color='red' pointing='below'>Enter Name</Label>}
+                            <Input style={{ width: '100%' }} onChange={this.handleInputChange} placeholder="Your Name" label="Your Name" />
+                        </Form.Field>
+                        <Divider horizontal>Vote on food type</Divider>
+                        <Form>
+                            {choices}
+                        </Form>
+                        <Divider horizontal>Select Preferences</Divider>
+                        {list}
+                        <Button onClick={this.addOption} icon='add square' size='large' content='Add Preference' primary labelPosition='right' />
+                        <Divider />
+                        <Button.Group style={{ width: '100%' }}>
+                            <Button disabled={this.state.value === '' || localStorage.getItem(`VotedFor(${this.props.match.params.id})`) === this.props.match.params.id} color='teal' onClick={() => this.submit()}>Continue</Button>
+                        </Button.Group>
+                    </Segment>
+                </Container>
             </div >
         )
     }

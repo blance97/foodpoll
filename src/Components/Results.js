@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Progress, Segment, Header, Divider, Table, Button } from 'semantic-ui-react';
+import { Progress, Segment, Header, Divider, Table, Button, Container } from 'semantic-ui-react';
 import base from '../rebase';
+import SuggestedPlaces from './SuggestedPlaces';
 import { map } from 'underscore'
 
 class Results extends Component {
@@ -70,25 +71,31 @@ class Results extends Component {
 
         return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Segment style={{ width: '100%' }}>
-                    <Header as='h1'>Results</Header>
-                    {votes}
-                    <br />
-                    <Divider horizontal>Preferences</Divider>
-                    <Table basic='very' celled>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell>Person</Table.HeaderCell>
-                                <Table.HeaderCell>Preferences</Table.HeaderCell>
-                                <Table.HeaderCell>Voted For</Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
-                            {preferences}
-                        </Table.Body>
-                    </Table>
-                    <Button onClick={() => window.location.href = `http://${window.location.hostname}:${window.location.port}`}>Create a new poll</Button>
-                </Segment>
+                <Container style={{ backgroundColor: "#eeeeee", padding: 15, borderRadius: 5 }}>
+                    <Segment style={{ width: '100%' }}>
+                        <Header as='h1'>Results</Header>
+                        {votes}
+                        <br />
+                        <Divider horizontal>Preferences</Divider>
+                        <Table basic='very' celled unstackable>
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell>Person</Table.HeaderCell>
+                                    <Table.HeaderCell>Preferences</Table.HeaderCell>
+                                    <Table.HeaderCell>Voted For</Table.HeaderCell>
+                                </Table.Row>
+                            </Table.Header>
+                            <Table.Body>
+                                {preferences}
+                            </Table.Body>
+                        </Table>
+                        <Button onClick={() => window.location.href = `http://${window.location.hostname}:${window.location.port}`}>Create a new poll</Button>
+                    </Segment>
+                    <Segment inverted>
+                        <Divider horizontal inverted>Suggested Places</Divider>
+                    </Segment>
+                    {this.state.foodVotes.length !== 0 && <SuggestedPlaces keywords={this.state.foodVotes} />}
+                </Container>
             </div >
         );
     }

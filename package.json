@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.2",
     "firebase": "^4.2.0",
     "lodash": "^4.17.4",
     "re-base": "^3.0.3",
@@ -11,7 +12,7 @@
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10",
     "react-slick": "^0.14.11",
-    "semantic-ui-react": "^0.71.3",
+    "semantic-ui-react": "^0.71.4",
     "shortid": "^2.2.8",
     "underscore": "^1.8.3"
   },
