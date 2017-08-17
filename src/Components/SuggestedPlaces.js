@@ -126,6 +126,7 @@ export default class SuggestedPlaces extends Component {
                         {places}
                     </Card.Group >}
                 <Modal
+                    closeIcon
                     open={this.state.modalOpen}
                     onClose={this.handleClose}
                     size='small'
