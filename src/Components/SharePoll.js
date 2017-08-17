@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Segment, Button, Header, Divider, Icon, Input, Container } from 'semantic-ui-react';
 import Cuisines from '../Data/Cuisines'
+import { Redirect } from 'react-router-dom';
 
 class SharePoll extends Component {
     constructor(props) {
         super(props);
         this.state = {
             editable: false,
-            inputs: [0]
+            inputs: [0],
+            redirect: false
         }
         this.addOption = this.addOption.bind(this);
     }
@@ -51,14 +53,15 @@ class SharePoll extends Component {
         });
         return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
+                {this.state.redirect && <Redirect to={this.props.link}></Redirect>}
                 <Container style={{ backgroundColor: "#eeeeee", padding: 15, borderRadius: 5 }}>
                     <Segment style={{ width: '100%' }}>
                         <Header as='h1'>Share Poll</Header>
-                        <center style={{ margin: 20 }}>Share Link <Input value={this.props.link} size="large" /></center>
+                        <center style={{ margin: 20 }}>Share Link <Input value={`https://${window.location.hostname}:${window.location.port}${this.props.link}`} size="large" /></center>
                         <Button.Group style={{ width: '100%' }}>
                             <Button onClick={() => this.props.prev()}>Back</Button>
                             <Button.Or />
-                            <Button color='teal' onClick={() => { window.location.href = this.props.link }}>Continue</Button>
+                            <Button color='teal' onClick={() => this.setState({ redirect: true })}>Continue</Button>
                         </Button.Group>
                     </Segment>
                 </Container>

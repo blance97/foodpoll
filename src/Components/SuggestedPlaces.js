@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { List, Image, Card, Divider, Dimmer, Loader, Segment, Modal, Button, Icon, Header } from 'semantic-ui-react';
-import axios from 'axios';
 import DetailedPlace from './DetailedPlace';
 const google = window.google;
 
@@ -26,10 +25,17 @@ export default class SuggestedPlaces extends Component {
                         location: currentLocation,
                         radius: '24141',
                         type: ['restaurant'],
+                        openNow: true,
                         keyword: `${element.data}`
                     };
-                    service.nearbySearch(request, (res) => {
-                        this.setState({ loading: false, initPos: { lat: position.coords.latitude, long: position.coords.longitude }, SuggestedPlaces: { ...this.state.SuggestedPlaces, [element.data]: res.slice(0, 10) } })
+                    service.nearbySearch(request, (res, status) => {
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            console.log(res);
+
+                            this.setState({ loading: false, initPos: { lat: position.coords.latitude, long: position.coords.longitude }, SuggestedPlaces: { ...this.state.SuggestedPlaces, [element.data]: res.slice(0, 10) } })
+                        } else {
+                            alert("error getting places");
+                        }
                     });
                 })
             });
@@ -88,7 +94,8 @@ export default class SuggestedPlaces extends Component {
                     </Card.Header>
                     <List style={{ height: '300px', overflowY: 'scroll' }}>
                         {this.state.SuggestedPlaces[element].map((item, j) => {
-                            let dist = this.getDistanceFromLatLonInMiles(this.state.initPos.lat, this.state.initPos.long, item.geometry.location.lat, item.geometry.location.lng)
+                            item.geometry.locationString = item.geometry.location.toUrlValue(); //string represenation of location property
+                            let dist = this.getDistanceFromLatLonInMiles(this.state.initPos.lat, this.state.initPos.long, item.geometry.locationString.split(",")[0], item.geometry.locationString.split(",")[1])
                             let priceLvl = this.renderPrice(item.price_level);
                             return (
                                 <List.Item key={j}>

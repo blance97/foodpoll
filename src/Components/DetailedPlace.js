@@ -23,6 +23,7 @@ export default class DetailedPlace extends Component {
     }
     render() {
         const details = this.state.info;
+        console.log(details)
         return (
             <div>
                 {this.state.loading ? <Segment>

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Progress, Segment, Header, Divider, Table, Button, Container } from 'semantic-ui-react';
 import base from '../rebase';
 import SuggestedPlaces from './SuggestedPlaces';
-import { map } from 'underscore'
+import { map } from 'underscore';
+import { Link } from 'react-router-dom';
 
 class Results extends Component {
     constructor(props) {
@@ -89,7 +90,7 @@ class Results extends Component {
                                 {preferences}
                             </Table.Body>
                         </Table>
-                        <Button onClick={() => window.location.href = `https://${window.location.hostname}:${window.location.port}`}>Create a new poll</Button>
+                        <Button as={Link} to="/createPoll">Create a new poll</Button>
                     </Segment>
                     <Segment inverted>
                         <Divider horizontal inverted>Suggested Places</Divider>

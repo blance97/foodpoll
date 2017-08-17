@@ -10,7 +10,7 @@ export default class About extends Component {
                 <Container text style={{ color: "white" }}>
                     <Header as='h1' style={{ color: "white" }}>What is Food Poll?</Header>
                     <ul>
-                        <p>This is a solution for people in groups that need to decide to get food based off multiple people's opinion.</p>
+                        <p>This is a solution for people in groups that need to decide to get food based off multiple people's opinion. It gathers everyones opinion so that the poll creator can determine what type of food to get.</p>
                         <p>Firebase is used as the "back-end", so results come in live. Geolocation is used to find suggested places near you (Using Google places API). </p>
                         <p>There is also mobile apps for this application for both IOS and Android. It is developed, but I need to do some refining and see if its worth releasing.</p>
                     </ul>

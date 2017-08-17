@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Segment, Button, Radio, Header, Divider, Icon, Input, Label, Container } from 'semantic-ui-react';
+import { Redirect } from 'react-router-dom';
 import base from '../rebase';
 
 class Voting extends Component {
@@ -11,10 +12,11 @@ class Voting extends Component {
             value: '',
             preferences: [{ data: "", index: 0 }],
             peoplePreferences: {},
-            choices: []
+            choices: [],
+            redirect: false
         }
         if (localStorage.getItem(`VotedFor(${this.props.match.params.id})`) === this.props.match.params.id) {
-            window.location.href = `https://${window.location.hostname}:${window.location.port}/results/${this.props.match.params.id}`;
+            this.setState({ redirect: true });
         }
         this.addOption = this.addOption.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -79,7 +81,7 @@ class Voting extends Component {
         base.push(`${id}/peoplePreferences`, { data: peoplePreferences }).then(() => {
             console.log("good")
             localStorage.setItem(`VotedFor(${this.props.match.params.id})`, this.props.match.params.id);
-            window.location.href = `https://${window.location.hostname}:${window.location.port}/results/${this.props.match.params.id}`;
+            this.setState({ redirect: true });
         }).catch((err) => {
             console.log(err);
         })
@@ -90,6 +92,7 @@ class Voting extends Component {
         const choices = this.state.choices.map((choice) => {
             return (
                 <Form.Field key={choice.index}>
+                    {this.state.redirect && <Redirect to={`/results/${this.props.match.params.id}`} push />}
                     <Radio
                         label={choice.data}
                         name='radiogroup'

@@ -67,12 +67,12 @@ class CreatePoll extends Component {
         return (
             <Container style={{ backgroundColor: "#eeeeee", padding: 15, borderRadius: 5 }}>
                 <Header as='h1' style={{ textColor: "white" }}>Create Poll</Header>
-                <div>
+                <div >
                     <Divider />
                     {list}
                     <Button onClick={this.addOption} icon='add square' size='large' content='Add Choice' primary labelPosition='right' />
                     <Divider />
-                    <Button.Group style={{ width: '100%' }}>
+                    <Button.Group style={{ width: '100%', marginTop: 100 }}>
                         <Button color='teal' onClick={() => this.submit(this.state)}>Continue</Button>
                     </Button.Group>
                 </div>
