@@ -38,19 +38,6 @@ class SharePoll extends Component {
         const cuisinesOptions = Object.keys(Cuisines).map((cuisine, i) => {
             return { key: i, value: cuisine, text: cuisine }
         });
-
-        const list = this.state.inputs.map((element, i) => {
-            return (
-                <div key={element}>
-                    <b>Person {i + 1}</b>
-                    <div style={{ display: 'flex' }}>
-                        <Icon onClick={this.deleteOption.bind(this, element)} link size='large' name='close' size='big' style={{ marginTop: '5px' }} />
-                        <Input fluid placeholder='Email' type="email" style={{ width: '100%' }} />
-                    </div >
-                    <Divider />
-                </div>
-            );
-        });
         return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 {this.state.redirect && <Redirect to={this.props.link}></Redirect>}

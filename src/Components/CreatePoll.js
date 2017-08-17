@@ -8,15 +8,17 @@ class CreatePoll extends Component {
         super(props);
         this.state = {
             editable: false,
-            inputs: [{ data: "", index: 0 }]
+            inputs: [{ data: "", index: 0 }],
+            ready: false
         }
         this.addOption = this.addOption.bind(this);
     }
 
     addOption() {
+
         this.setState({
             inputs: [...this.state.inputs, { data: "", index: this.state.inputs[this.state.inputs.length - 1].index + 1 }]
-        })
+        }, () => this.validator())
     }
     updateOption(e, data, index) {
         this.setState({
@@ -26,7 +28,8 @@ class CreatePoll extends Component {
                 }
                 return element
             })
-        })
+        }, () => this.validator())
+
     }
     deleteOption(i) {
         if (this.state.inputs.length === 1) {
@@ -37,13 +40,24 @@ class CreatePoll extends Component {
         const newList = [...this.state.inputs.slice(0, index), ...this.state.inputs.slice(index + 1)]
         this.setState({
             inputs: newList
-        })
+        }, () => this.validator())
+
     }
 
     submit(data) {
         this.props.createPoll(`${Date.now() + shortid.generate()}`, data)
     }
 
+    validator() {
+        let ready = true;
+        this.state.inputs.forEach((element) => {
+            console.log("element:", element);
+            if (element.data === "") {
+                ready = false;
+            }
+        })
+        this.setState({ ready });
+    }
     /**
      * TODO: Look into user addition
      */
@@ -73,7 +87,7 @@ class CreatePoll extends Component {
                     <Button onClick={this.addOption} icon='add square' size='large' content='Add Choice' primary labelPosition='right' />
                     <Divider />
                     <Button.Group style={{ width: '100%', marginTop: 100 }}>
-                        <Button color='teal' onClick={() => this.submit(this.state)}>Continue</Button>
+                        <Button color='teal' disabled={!this.state.ready} onClick={() => this.submit(this.state)}>Continue</Button>
                     </Button.Group>
                 </div>
             </Container>
