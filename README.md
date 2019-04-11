@@ -10,7 +10,7 @@ This is a solution for people in groups that need to decide to get food based of
   4. User view results.
   5. View suggested restaurants using Google Places Search API. Currently limited to 10 responses per option.
 ## TODO:
- * Integrate with something like Uber Eats?
+ * Integrate with something like Uber Eats? 
  
 ### Screen Shots
 
