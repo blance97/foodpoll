@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import { List, Image, Card, Divider, Dimmer, Loader, Segment, Modal, Button, Icon, Header } from 'semantic-ui-react';
 import DetailedPlace from './DetailedPlace';
@@ -6,7 +7,7 @@ const google = window.google;
 export default class SuggestedPlaces extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props)
+        (this.props)
         this.state = {
             SuggestedPlaces: {},
             initPos: {},
@@ -30,7 +31,7 @@ export default class SuggestedPlaces extends Component {
                     };
                     service.nearbySearch(request, (res, status) => {
                         if (status === google.maps.places.PlacesServiceStatus.OK) {
-                            console.log(res);
+                            (res);
 
                             this.setState({ loading: false, initPos: { lat: position.coords.latitude, long: position.coords.longitude }, SuggestedPlaces: { ...this.state.SuggestedPlaces, [element.data]: res.slice(0, 10) } })
                         } else {
@@ -85,7 +86,7 @@ export default class SuggestedPlaces extends Component {
         })
     }
     render() {
-        console.log(this.state);
+        (this.state);
         const places = Object.keys(this.state.SuggestedPlaces).map((element, i) => {
             return (
                 <Card raised color={"orange"} key={i}>

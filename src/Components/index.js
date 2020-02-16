@@ -25,7 +25,7 @@ export default class HomePage extends Component {
                         />
                         <Header
                             as='h2'
-                            content='Create a food survey and send it out to get everyones opinion'
+                            content='Create a food survey and send it out to get everyones opinion!'
                             inverted
                             style={{ fontSize: '1.7em', fontWeight: 'normal' }}
                         />

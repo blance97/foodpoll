@@ -3,23 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.16.2",
-    "firebase": "^4.2.0",
-    "lodash": "^4.17.4",
-    "re-base": "^3.0.3",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-router-dom": "^4.1.2",
-    "react-scripts": "1.0.10",
+    "axios": "^0.19.2",
+    "firebase": "^4.13.1",
+    "lodash": "^4.17.15",
+    "re-base": "^3.2.3",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "2.1.2",
     "react-slick": "^0.14.11",
-    "semantic-ui-react": "^0.71.4",
-    "shortid": "^2.2.8",
-    "underscore": "^1.8.3"
+    "semantic-ui-react": "^0.71.5",
+    "shortid": "^2.2.15",
+    "underscore": "^1.9.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

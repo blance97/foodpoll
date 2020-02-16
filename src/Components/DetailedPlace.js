@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Header, Divider, Dimmer, Loader, Segment } from 'semantic-ui-react';
-import axios from 'axios';
 const google = window.google;
 
 export default class DetailedPlace extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props);
+        // console.log(this.props);
         this.state = {
             loading: true,
             info: {}

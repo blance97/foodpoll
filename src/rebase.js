@@ -8,11 +8,8 @@ let app = firebase.initializeApp({
     projectId: 'poised-rock-154320'
 });
 
-let isSigned = false;
 app.auth().onAuthStateChanged((user) => {
-    if (user) isSigned = true;
-    else isSigned = false;
-    console.log("user: ", user, "and", isSigned)
+    // console.log("user: ", user, "and", isSigned)
 });
 
 let db = database(app);

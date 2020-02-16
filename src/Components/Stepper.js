@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Container, Button, Divider } from 'semantic-ui-react';
+import { Menu, Container, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 const Stepper = ({ step }) => (

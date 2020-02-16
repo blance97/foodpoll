@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Button, Header, Divider, Icon, Input, Container } from 'semantic-ui-react';
-import Cuisines from '../Data/Cuisines'
+import { Segment, Button, Header, Input, Container } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 
 class SharePoll extends Component {
@@ -22,7 +21,7 @@ class SharePoll extends Component {
     }
     deleteOption(i) {
         if (this.state.inputs.length === 1) {
-            console.log("cannot delete last item");
+            // console.log("cannot delete last item");
             return;
         }
         const index = this.state.inputs.findIndex((value) => i === value)
@@ -35,9 +34,6 @@ class SharePoll extends Component {
      * TODO: Look into user addition
      */
     render() {
-        const cuisinesOptions = Object.keys(Cuisines).map((cuisine, i) => {
-            return { key: i, value: cuisine, text: cuisine }
-        });
         return (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 {this.state.redirect && <Redirect to={this.props.link}></Redirect>}

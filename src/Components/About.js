@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button, Header, Icon, Image, Segment, Divider } from 'semantic-ui-react';
+import { Container, Button, Header, Segment } from 'semantic-ui-react';
 import '../app.css';
 export default class About extends Component {
     render() {
@@ -23,7 +23,7 @@ export default class About extends Component {
                         <li>Create Poll(Survey)</li>
                         <li>Copy Link</li>
                         <li>Send link to friends/co-workers</li>
-                        <li>Vote on food and select preference</li>
+                        <li>Vote on food and select preference/dietary restrictions</li>
                         <li>Get results and view suggested places to get food</li>
                     </ul>
                     <h2 style={{ fontStyle: "italic" }}>By Lance Dinh</h2>

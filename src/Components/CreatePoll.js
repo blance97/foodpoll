@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Progress, Container, Button, Checkbox, Header, Divider, Icon, Dropdown, Step } from 'semantic-ui-react';
+import { Container, Button, Header, Divider, Icon, Dropdown } from 'semantic-ui-react';
 import shortid from 'shortid';
 import Cuisines from '../Data/Cuisines';
 
@@ -51,7 +51,6 @@ class CreatePoll extends Component {
     validator() {
         let ready = true;
         this.state.inputs.forEach((element) => {
-            console.log("element:", element);
             if (element.data === "") {
                 ready = false;
             }
@@ -71,7 +70,7 @@ class CreatePoll extends Component {
                 <div key={element.index}>
                     <b>Option {i + 1}</b>
                     <div style={{ display: 'flex' }}>
-                        <Icon onClick={this.deleteOption.bind(this, element.index)} link size='large' name='close' size='big' style={{ marginTop: '5px' }} />
+                        <Icon onClick={this.deleteOption.bind(this, element.index)} link size='large' name='close' style={{ marginTop: '5px' }} />
                         <Dropdown onChange={(e, data) => { this.updateOption(e, data, element.index) }} placeholder='Select Food Type' search selection options={cuisinesOptions} fluid />
                     </div >
                     <Divider />

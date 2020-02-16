@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Progress, Container, Button, Checkbox, Header, Divider, Icon } from 'semantic-ui-react';
 import {
   BrowserRouter as Router,
   Route,
@@ -20,7 +19,7 @@ import firebase from 'firebase';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { link: '' }
+    this.state = { link: '', sliderCount: 0 }
     this.next = this.next.bind(this);
     this.prev = this.prev.bind(this);
 
@@ -30,7 +29,8 @@ class App extends Component {
         code: error.code,
         message: error.message
       }
-      console.log(err);
+      alert(err)
+      // console.log(err);
     });
   }
 
@@ -48,10 +48,11 @@ class App extends Component {
     console.log("id", id);
     console.log("data:", data)
     base.post(id, data).then(() => {
-      this.setState({ link: `/vote/${id}` }, () => {
-        this.next();
-      })
+
+      this.setState({ link: `/vote/${id}` })
+      this.slider.slickGoTo(1)
     })
+  
   }
 
   render() {
@@ -59,19 +60,19 @@ class App extends Component {
       infinite: false,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1,
       swipe: false
     };
-    const slider = ({ }) => (
+    const slider = () => (
       <div>
-        <Slider ref={c => this.slider = c} {...settings} >
+        <Slider ref={c => (this.slider = c)} {...settings} >
           <div>
-            <CreatePoll next={this.next} prev={this.prev} createPoll={(id, data) => this.createPoll(`${id}`, { data })} />
+            <CreatePoll createPoll={(id, data) => this.createPoll(`${id}`, { data })} />
           </div>
           <div>
-            <SharePoll next={this.next} prev={this.prev} link={this.state.link} />
+            <SharePoll prev={this.prev} link={this.state.link} />
           </div>
-        </Slider></div>
+        </Slider>
+      </div>
     );
 
     return (

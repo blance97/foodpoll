@@ -74,12 +74,9 @@ class Voting extends Component {
             return;
         }
         const id = this.props.match.params.id;
-        // let pref = { preferences: this.state.preferences, votedFor: this.state.value }
-        // console.log(pref);
         const peoplePreferences = { name: this.state.name, preferences: this.state.preferences, votedFor: this.state.value }
-        console.log(peoplePreferences);
+        // console.log(peoplePreferences);
         base.push(`${id}/peoplePreferences`, { data: peoplePreferences }).then(() => {
-            console.log("good")
             localStorage.setItem(`VotedFor(${this.props.match.params.id})`, this.props.match.params.id);
             this.setState({ redirect: true });
         }).catch((err) => {
@@ -106,10 +103,10 @@ class Voting extends Component {
         const list = this.state.preferences.map((element, i) => {
             return (
                 <div key={element.index}>
-                    <b>Preference {i + 1}</b>
+                    <b>Preference/Dietary Restriction {i + 1}</b>
                     <div style={{ display: 'flex' }}>
-                        <Icon onClick={this.deleteOption.bind(this, element.index)} link size='large' name='close' size='big' style={{ marginTop: '5px' }} />
-                        <Input onChange={(e, data) => { this.updateOption(e, data, element.index) }} style={{ width: '100%' }} placeholder={`Preference ${i + 1}`} />
+                        <Icon onClick={this.deleteOption.bind(this, element.index)} link size='large' name='close' style={{ marginTop: '5px' }} />
+                        <Input onChange={(e, data) => { this.updateOption(e, data, element.index) }} style={{ width: '100%' }} placeholder={`Preference/Dietary Restriction ${i + 1}`} />
                     </div >
                     <Divider />
                 </div>
@@ -128,7 +125,7 @@ class Voting extends Component {
                         <Form>
                             {choices}
                         </Form>
-                        <Divider horizontal>Select Preferences</Divider>
+                        <Divider horizontal>Preferences/Dietary Restrictions</Divider>
                         {list}
                         <Button onClick={this.addOption} icon='add square' size='large' content='Add Preference' primary labelPosition='right' />
                         <Divider />

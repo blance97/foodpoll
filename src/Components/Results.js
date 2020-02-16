@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Progress, Segment, Header, Divider, Table, Button, Container } from 'semantic-ui-react';
 import base from '../rebase';
 import SuggestedPlaces from './SuggestedPlaces';
-import { map } from 'underscore';
 import { Link } from 'react-router-dom';
 
 class Results extends Component {
@@ -28,8 +27,8 @@ class Results extends Component {
     formatPreferences(prefArray) {
         let builder = "";
         prefArray.forEach((element, i) => {
-            builder += element.data
-            i !== prefArray.length - 1 ? builder += ", " : null;
+            builder += element.data;
+            i !== prefArray.length - 1 ? builder += ", " : builder = '';
         })
         return builder;
     }
@@ -82,7 +81,7 @@ class Results extends Component {
                             <Table.Header>
                                 <Table.Row>
                                     <Table.HeaderCell>Person</Table.HeaderCell>
-                                    <Table.HeaderCell>Preferences</Table.HeaderCell>
+                                    <Table.HeaderCell>Preferences/dietary restriction</Table.HeaderCell>
                                     <Table.HeaderCell>Voted For</Table.HeaderCell>
                                 </Table.Row>
                             </Table.Header>
